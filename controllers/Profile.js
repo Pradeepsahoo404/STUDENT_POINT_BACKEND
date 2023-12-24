@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const User = require("../models/User");
 const Profile = require("../models/Profile");
 const cron = require('node-cron');
 const moment = require('moment');
