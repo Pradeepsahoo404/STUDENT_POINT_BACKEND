@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config()
-const User = require('../models/User');
+const User = require('../models/user.js');
 
 exports.auth = async (req , res , next) => {
     try{
@@ -37,59 +37,3 @@ exports.auth = async (req , res , next) => {
         })
     }
 }
-
-//is student
-exports.isStudent = async (req , res , next) => {
-    try{
-        if(req.user.accountType !== 'Student'){
-            return res.status(401).json({
-                success : false,
-                message : "This is protected route for student only"
-            })
-        }
-        next();
-    }
-    catch(err){
-        return res.status(500).json({
-            success : false,
-            message : "User role connot be verified , please try again"
-        })
-        }
-    }
-
-
-    exports.isInstructor = async (req , res , next) => {
-        try{
-            if(req.user.accountType !== 'Instructor'){
-                return res.status(401).json({
-                    success : false,
-                    message : "This is protected route for Instructor only"
-                })
-            }
-            next();
-        }
-        catch(err){
-            return res.status(500).json({
-                success : false,
-                message : "User role connot be verified , please try again"
-            })
-            }
-        }
-
-        exports.adminAuth = async (req , res , next) => {
-            try{
-                if(req.user.accountType !== 'Admin'){
-                    return res.status(401).json({
-                        success : false,
-                        message : "This is protected route for Admin only"
-                    })
-                }
-                next();
-            }
-            catch(err){
-                return res.status(500).json({
-                    success : false,
-                    message : "User role connot be verified , please try again"
-                })
-                }
-            }
